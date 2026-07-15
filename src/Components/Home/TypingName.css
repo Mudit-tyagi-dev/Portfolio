@@ -1,0 +1,17 @@
+.typing-box {
+  font-size: 2.5rem;
+  color: #00ffcc;
+  white-space: nowrap;
+  font-family: "Bitcount Single", "Inter", sans-serif;
+  /* overflow: hidden; */
+}
+
+.cursor {
+  animation: blink 0.8s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

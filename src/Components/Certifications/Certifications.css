@@ -1,0 +1,161 @@
+.certifications-section {
+  width: 100%;
+  padding: 80px 20px;
+  background-color: black;
+  position: relative;
+  z-index: 1;
+}
+
+.certifications-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+  font-weight: 700;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.cert-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.column-title {
+  font-size: 1.8rem;
+  color: #00ffcc;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.certifications-list,
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cert-card,
+.achievement-card {
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.05) 0%, rgba(0, 255, 204, 0) 100%);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.cert-card:hover,
+.achievement-card:hover {
+  border-color: rgba(0, 255, 204, 0.5);
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.1) 0%, rgba(0, 255, 204, 0.02) 100%);
+}
+
+.cert-icon,
+.achievement-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.cert-content,
+.achievement-content {
+  flex: 1;
+}
+
+.cert-title,
+.achievement-title {
+  font-size: 1.1rem;
+  color: white;
+  margin: 0 0 6px 0;
+  font-weight: 600;
+}
+
+.cert-issuer {
+  font-size: 0.9rem;
+  color: #00ffcc;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.cert-date {
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  margin: 0;
+}
+
+.achievement-description {
+  font-size: 0.95rem;
+  color: #b0b0b0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .certifications-section {
+    padding: 60px 16px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .cert-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .column-title {
+    font-size: 1.4rem;
+  }
+
+  .cert-card,
+  .achievement-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .certifications-section {
+    padding: 40px 12px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .column-title {
+    font-size: 1.2rem;
+  }
+
+  .cert-card,
+  .achievement-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .cert-icon,
+  .achievement-icon {
+    font-size: 1.5rem;
+  }
+
+  .cert-title,
+  .achievement-title {
+    font-size: 1rem;
+  }
+}

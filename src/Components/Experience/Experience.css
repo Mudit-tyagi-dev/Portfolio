@@ -1,0 +1,177 @@
+.experience-section {
+  width: 100%;
+  padding: 80px 20px;
+  background-color: black;
+  position: relative;
+  z-index: 1;
+}
+
+.experience-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+  font-weight: 700;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.experience-column,
+.education-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.column-title {
+  font-size: 1.8rem;
+  color: #00ffcc;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.experience-items,
+.education-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.experience-card,
+.education-card {
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.05) 0%, rgba(0, 255, 204, 0) 100%);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.experience-card:hover,
+.education-card:hover {
+  border-color: rgba(0, 255, 204, 0.5);
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.1) 0%, rgba(0, 255, 204, 0.02) 100%);
+}
+
+.card-header {
+  margin-bottom: 12px;
+}
+
+.job-title,
+.degree {
+  font-size: 1.2rem;
+  color: white;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.company-name,
+.institution {
+  font-size: 0.95rem;
+  color: #00ffcc;
+  font-weight: 500;
+}
+
+.period,
+.year,
+.field {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+  margin: 8px 0;
+}
+
+.description,
+.details {
+  font-size: 0.95rem;
+  color: #e0dbdb;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.skills-badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.skill-tag {
+  display: inline-block;
+  background-color: rgba(0, 255, 204, 0.1);
+  color: #00ffcc;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(0, 255, 204, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 60px 16px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .column-title {
+    font-size: 1.4rem;
+  }
+
+  .experience-card,
+  .education-card {
+    padding: 18px;
+  }
+
+  .job-title,
+  .degree {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 40px 12px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .column-title {
+    font-size: 1.2rem;
+  }
+
+  .experience-card,
+  .education-card {
+    padding: 16px;
+  }
+
+  .job-title,
+  .degree {
+    font-size: 1rem;
+  }
+
+  .description,
+  .details {
+    font-size: 0.9rem;
+  }
+}

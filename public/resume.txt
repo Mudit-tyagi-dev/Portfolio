@@ -1,0 +1,53 @@
+MUDIT TYAGI
+Full Stack Developer | Web Enthusiast
+
+---
+
+CONTACT
+Email: your-email@example.com
+LinkedIn: linkedin.com/in/mudit-tyagi11
+GitHub: github.com/venomlive
+Location: India
+
+---
+
+PROFESSIONAL SUMMARY
+Passionate Full Stack Developer with expertise in modern web technologies. 
+Strong foundation in React, Node.js, and database design. 
+Committed to building scalable, user-friendly applications.
+
+---
+
+SKILLS
+Frontend: React, JavaScript, HTML/CSS, Tailwind CSS, Framer Motion
+Backend: Node.js, Express.js, REST APIs, Authentication
+Databases: MongoDB, PostgreSQL, Firebase
+Tools: Git, VS Code, Docker, Vercel, npm/yarn
+Other: Python, Next.js, GraphQL
+
+---
+
+PROJECTS
+E-Commerce Platform | React, Node.js, MongoDB, Stripe
+Full-stack e-commerce solution with product catalog, cart, and payment integration
+
+Task Management App | React, Firebase, Redux
+Collaborative tool with real-time updates and team workspace
+
+Portfolio Website | React, Framer Motion, Tailwind CSS
+Personal portfolio showcasing skills and projects
+
+---
+
+EDUCATION
+Bachelor's in relevant field (if applicable)
+Various online courses and certifications in web development
+
+---
+
+ADDITIONAL
+Open source contributions
+Active in developer community
+Continuous learner exploring new technologies
+
+Note: Replace this with your actual resume PDF file
