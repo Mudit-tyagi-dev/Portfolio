@@ -1,33 +1,136 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Home.css";
 import profile from "./profile.png";
 import TypingName from "./Typingname";
 import { Button } from "../common/Button";
 
 function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // ESC key listener to close menu
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // Lock scroll when open
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, isMobile]);
+
   return (
     <>
-      <header>
-        <nav className="nav">
-          <a href="#Experience">Experience</a>
-          <a href="#Skills">Skills</a>
-          <a href="#Projects">Projects</a>
-          <a href="#About">About</a>
-          <a href="#Certifications">Certifications</a>
-          <a href="#Contact">Contact</a>
-        </nav>
+      <header className="header-container">
+        {/* On desktop, show the standard navbar list */}
+        {!isMobile && (
+          <nav className="nav">
+            <a href="#Experience">Experience</a>
+            <a href="#Skills">Skills</a>
+            <a href="#Projects">Projects</a>
+            <a href="#About">About</a>
+            <a href="#Certifications">Certifications</a>
+            <a href="#Contact">Contact</a>
+          </nav>
+        )}
+
+        {/* On mobile, show the header pill with toggle button */}
+        {isMobile && (
+          <div className="mobile-nav-bar">
+            <span className="mobile-logo-text">Mudit Tyagi</span>
+            <button 
+              className={`hamburger-toggle ${isOpen ? "open" : ""}`}
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
+            >
+              <span className="hamburger-bar"></span>
+              <span className="hamburger-bar"></span>
+              <span className="hamburger-bar"></span>
+            </button>
+          </div>
+        )}
       </header>
+
+      <AnimatePresence>
+        {isOpen && isMobile && (
+          <>
+            {/* Backdrop blur overlay */}
+            <motion.div
+              className="drawer-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Slide-out Drawer */}
+            <motion.div
+              className="drawer-menu"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            >
+              <div className="drawer-header">
+                <span className="drawer-logo">Mudit Tyagi</span>
+                <button 
+                  className="drawer-close"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close menu"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <nav className="drawer-links">
+                <a href="#Experience" onClick={() => setIsOpen(false)}>Experience</a>
+                <a href="#Skills" onClick={() => setIsOpen(false)}>Skills</a>
+                <a href="#Projects" onClick={() => setIsOpen(false)}>Projects</a>
+                <a href="#About" onClick={() => setIsOpen(false)}>About</a>
+                <a href="#Certifications" onClick={() => setIsOpen(false)}>Certifications</a>
+                <a href="#Contact" onClick={() => setIsOpen(false)}>Contact</a>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       <div className="home">
         <div className="content">
           <div className="data">
             <TypingName />
             <div className="data">
-            <p className="sub-heading">
-              Passionate web developer skilled in HTML, CSS, JavaScript,
-              Node.js, and React. I build fast, modern, and responsive websites.
-              Constantly learning, exploring backend, and diving into AI and
-              machine learning.
-            </p>
+              <p className="sub-heading">
+                Passionate web developer skilled in HTML, CSS, JavaScript,
+                Node.js, and React. I build fast, modern, and responsive websites.
+                Constantly learning, exploring backend, and diving into AI and
+                machine learning.
+              </p>
             </div>
 
             <div className="cta-group">
@@ -89,7 +192,7 @@ function Home() {
                 type="button"
                 data-twe-ripple-init
               >
-                <span >
+                <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -108,7 +211,7 @@ function Home() {
                 type="button"
                 data-twe-ripple-init
               >
-                <span >
+                <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

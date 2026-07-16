@@ -71,7 +71,7 @@ function FooterSection() {
           >
             <h3 className="brand-name">Mudit Tyagi</h3>
             <p className="brand-description">Full Stack Developer | Web Enthusiast | Tech Innovator</p>
-            <p className="brand-tagline">Building amazing web experiences, one project at a time.</p>
+            <p className="brand-tagline">Building amazing web experiences.</p>
           </motion.div>
 
           {/* Quick Links */}
