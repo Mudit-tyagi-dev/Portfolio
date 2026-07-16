@@ -7,25 +7,29 @@ function AboutSection() {
     {
       id: 1,
       title: "Innovation",
-      description: "Constantly exploring new technologies and methodologies to deliver cutting-edge solutions.",
+      description:
+        "Building practical solutions by continuously learning modern technologies and applying them to solve real-world problems.",
       icon: "💡",
     },
     {
       id: 2,
       title: "Quality",
-      description: "Committed to writing clean, maintainable code with comprehensive testing and documentation.",
+      description:
+        "Writing clean, maintainable, and scalable code with a strong focus on performance, responsiveness, and user experience.",
       icon: "✨",
     },
     {
       id: 3,
       title: "Collaboration",
-      description: "Believing in the power of teamwork and open communication to achieve better outcomes.",
+      description:
+        "Believing in teamwork, open communication, and knowledge sharing to achieve better results and grow together.",
       icon: "🤝",
     },
     {
       id: 4,
       title: "Continuous Learning",
-      description: "Dedicated to growing my skills and staying updated with industry trends and best practices.",
+      description:
+        "Dedicated to growing my skills and staying updated with industry trends and best practices.",
       icon: "📚",
     },
   ];
@@ -72,31 +76,38 @@ function AboutSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="about-heading">Full Stack Developer & Tech Enthusiast</h2>
+            <h2 className="about-heading">
+              Full Stack Developer & Problem Solver
+            </h2>
 
             <p className="about-paragraph">
-              Hello! I&apos;m Mudit Tyagi, a passionate full stack developer with a deep love for creating innovative web solutions.
-              With over 3+ years of professional experience, I&apos;ve built a diverse portfolio of projects ranging from e-commerce
-              platforms to real-time analytics dashboards.
+              Hello! I'm Mudit Tyagi, a Full Stack Developer passionate about
+              building modern, scalable, and user-friendly web applications. I
+              enjoy transforming ideas into real-world products using
+              technologies like React, Node.js, Express.js, PostgreSQL, and
+              Tailwind CSS
             </p>
 
             <p className="about-paragraph">
-              My journey in web development started with a curiosity to understand how things work on the internet. What began as
-              a hobby has evolved into a fulfilling career where I get to solve complex problems and create applications that make
-              a real difference. I specialize in building scalable, user-friendly applications using modern technologies like React,
-              Node.js, and cloud platforms.
+              I have built projects ranging from AI-powered dashboards and
+              business websites to management systems and interactive web
+              applications. Every project helps me strengthen my understanding
+              of software architecture, APIs, databases, and clean code
+              practices.
             </p>
 
             <p className="about-paragraph">
-              When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing
-              knowledge with the community. I believe in the power of continuous learning and staying updated with the ever-evolving
-              landscape of web development.
+              Alongside development, I actively participate in hackathons,
+              organize coding events through my college Coding Club, and
+              continuously explore emerging technologies in AI and full-stack
+              development. My goal is to build software that solves real
+              problems and creates meaningful impact.
             </p>
 
             <div className="about-stats">
               <div className="stat-item">
-                <h3 className="stat-number">2+</h3>
-                <p className="stat-label">Years of Experience</p>
+                <h3 className="stat-number">5+</h3>
+                <p className="stat-label">Client & College Projects</p>
               </div>
               <div className="stat-item">
                 <h3 className="stat-number">10+</h3>
