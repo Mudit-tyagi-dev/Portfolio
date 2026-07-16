@@ -158,7 +158,8 @@ function Home() {
                 href="#Contact"
                 variant="ghost"
                 size="lg"
-                className="btn-link"
+                className="btn-link "
+                  style={{border: "1px solid rgb(0, 255, 204)"}}
               >
                 Get in Touch
               </Button>
