@@ -6,55 +6,59 @@ function Certifications() {
   const certifications = [
     {
       id: 1,
-      title: "Advanced React Patterns",
-      issuer: "Udemy",
-      date: "2023",
+      title: "Web Design and Development",
+      issuer: "ICC Computer Education",
+      date: " Issued: 2025",
       credential: "Certificate",
     },
     {
       id: 2,
-      title: "Full Stack Web Development",
-      issuer: "Coursera",
-      date: "2022",
-      credential: "Certificate",
-    },
-    {
-      id: 3,
-      title: "AWS Solutions Architect",
-      issuer: "Amazon Web Services",
-      date: "2023",
-      credential: "Certificate",
-    },
-    {
-      id: 4,
-      title: "Node.js & Express.js Mastery",
+      title: "Node.js- Beginner to Advance course with projects",
       issuer: "Udemy",
-      date: "2022",
+      date: " Issued: 2025",
       credential: "Certificate",
     },
+    // {
+    //   id: 3,
+    //   title: "AWS Solutions Architect",
+    //   issuer: "Amazon Web Services",
+    //   date: "2023",
+    //   credential: "Certificate",
+    // },
+    // {
+    //   id: 4,
+    //   title: "Node.js & Express.js Mastery",
+    //   issuer: "Udemy",
+    //   date: "2022",
+    //   credential: "Certificate",
+    // },
   ];
 
   const achievements = [
     {
       id: 1,
-      title: "Open Source Contributor",
-      description: "Contributed to multiple open-source projects with 50+ merged pull requests",
+      title: " Worked with Real Clients",
+      description: "Successfully delivered client-focused web development projects, transforming business requirements into responsive, user-friendly, and high-performance websites with an emphasis on UI/UX, reliability, and maintainability",
     },
-    {
+     {
       id: 2,
-      title: "Tech Speaker",
-      description: "Delivered talks on web development topics at 5+ local tech meetups and conferences",
+      title: "Hackathon Winner",
+      description:
+        "Secured 1st place in the GeeksforGeeks HackFest 2026 by developing an innovative software solution that demonstrated strong problem-solving, teamwork, and full-stack development skills under competitive time constraints.",
     },
     {
       id: 3,
-      title: "Hackathon Winner",
-      description: "Won 1st place in a national web development hackathon with an innovative project",
+      title: "Student Chairmen",
+      description:
+        "Serving as the Student Chairman of the college Coding Club, organizing technical events, coding sessions, and hackathons while fostering collaboration and helping students strengthen their programming and development skills.",
     },
     {
       id: 4,
-      title: "Community Leader",
-      description: "Mentored 10+ junior developers and helped them launch their web development careers",
-    },
+      title: "Organized College Hackathon – PieceCode 1.0",
+      description:
+        "Successfully organized PieceCode 1.0, a college-level hackathon that brought together student developers to collaborate, solve real-world challenges, and showcase innovative projects. Contributed to planning, coordination, participant management, and the overall execution of the event.",
+    }, 
+    
   ];
 
   const containerVariants = {
@@ -157,7 +161,9 @@ function Certifications() {
                   <div className="achievement-icon">⭐</div>
                   <div className="achievement-content">
                     <h3 className="achievement-title">{achievement.title}</h3>
-                    <p className="achievement-description">{achievement.description}</p>
+                    <p className="achievement-description">
+                      {achievement.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
