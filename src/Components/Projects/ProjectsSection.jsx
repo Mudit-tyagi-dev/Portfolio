@@ -71,7 +71,7 @@ function ProjectsSection() {
       ],
       image: "/Assets/6.webp",
       github: "https://github.com/Mudit-tyagi-dev/Portfolio",
-      live: "mudittyagi.vercel.app/",
+      live: "https://mudittyagi.vercel.app/",
       role: "Full Stack Developer",
     },
     {
