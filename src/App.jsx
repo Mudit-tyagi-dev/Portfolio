@@ -20,28 +20,31 @@ import "./App.css";
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
 
-useEffect(() => {
-  const lenis = new Lenis({
-    duration: 1,
-    smoothWheel: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 1.5,
-  });
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    });
 
-  let rafId;
+    window.lenis = lenis;
 
-  const raf = (time) => {
-    lenis.raf(time);
+    let rafId;
+
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+
     rafId = requestAnimationFrame(raf);
-  };
 
-  rafId = requestAnimationFrame(raf);
-
-  return () => {
-    cancelAnimationFrame(rafId);
-    lenis.destroy();
-  };
-}, []);
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      window.lenis = null;
+    };
+  }, []);
 
   return (
     <div className="app-wrapper">

@@ -343,6 +343,42 @@
   }
 }
 
+@media (max-width: 920px) and (min-width: 769px) {
+  .skills-container-layout {
+    gap: 20px;
+  }
+
+  .skills-left-column {
+    width: 45%;
+  }
+
+  .skills-right-column {
+    width: 55%;
+    min-height: 540px;
+  }
+
+  .floating-card {
+    width: 110px;
+    height: 80px;
+  }
+
+  .floating-card-icon {
+    font-size: 1.4rem;
+  }
+
+  .floating-card-name {
+    font-size: 0.72rem;
+  }
+
+  .floating-card-subtitle {
+    font-size: 0.58rem;
+  }
+  
+  .floating-card-inner {
+    padding: 8px;
+  }
+}
+
 /* Mobile Portrait & Landscape (Zero-gravity turned to static grid layout) */
 @media (max-width: 768px) {
   .skills-section {

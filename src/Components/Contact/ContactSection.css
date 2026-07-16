@@ -307,5 +307,6 @@
   .submit-button {
     padding: 12px 24px;
     font-size: 0.95rem;
+    width: 100%;
   }
 }

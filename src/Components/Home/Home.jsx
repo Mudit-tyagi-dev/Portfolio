@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Home.css";
 import profile from "./profile.png";
@@ -8,6 +8,8 @@ import { Button } from "../common/Button";
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const drawerRef = useRef(null);
+  const triggerRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -30,15 +32,65 @@ function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Lock scroll when open
+  // Lock scroll when open, including Lenis
   useEffect(() => {
     if (isOpen && isMobile) {
       document.body.style.overflow = "hidden";
+      if (window.lenis) window.lenis.stop();
     } else {
       document.body.style.overflow = "";
+      if (window.lenis) window.lenis.start();
     }
     return () => {
       document.body.style.overflow = "";
+      if (window.lenis) window.lenis.start();
+    };
+  }, [isOpen, isMobile]);
+
+  // Focus trap for accessibility when drawer is open
+  useEffect(() => {
+    if (!isOpen || !isMobile) return;
+
+    // Focus the first interactive element (close button or link)
+    const focusable = drawerRef.current?.querySelectorAll(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable && focusable.length > 0) {
+      focusable[0].focus();
+    }
+
+    const trapFocus = (e) => {
+      if (e.key !== "Tab") return;
+      const elements = drawerRef.current?.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!elements || elements.length === 0) return;
+
+      const firstEl = elements[0];
+      const lastEl = elements[elements.length - 1];
+
+      if (e.shiftKey) {
+        // Shift + Tab (backwards)
+        if (document.activeElement === firstEl) {
+          lastEl.focus();
+          e.preventDefault();
+        }
+      } else {
+        // Tab (forwards)
+        if (document.activeElement === lastEl) {
+          firstEl.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", trapFocus);
+    return () => {
+      window.removeEventListener("keydown", trapFocus);
+      // Return focus to trigger button
+      if (triggerRef.current) {
+        triggerRef.current.focus();
+      }
     };
   }, [isOpen, isMobile]);
 
@@ -47,7 +99,7 @@ function Home() {
       <header className="header-container">
         {/* On desktop, show the standard navbar list */}
         {!isMobile && (
-          <nav className="nav">
+          <nav className="nav" aria-label="Main Navigation">
             <a href="#Experience">Experience</a>
             <a href="#Skills">Skills</a>
             <a href="#Projects">Projects</a>
@@ -62,10 +114,12 @@ function Home() {
           <div className="mobile-nav-bar">
             <span className="mobile-logo-text">Mudit Tyagi</span>
             <button 
+              ref={triggerRef}
               className={`hamburger-toggle ${isOpen ? "open" : ""}`}
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
+              aria-controls="mobile-drawer-menu"
             >
               <span className="hamburger-bar"></span>
               <span className="hamburger-bar"></span>
@@ -90,7 +144,12 @@ function Home() {
 
             {/* Slide-out Drawer */}
             <motion.div
+              id="mobile-drawer-menu"
+              ref={drawerRef}
               className="drawer-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation Menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -107,7 +166,7 @@ function Home() {
                 </button>
               </div>
 
-              <nav className="drawer-links">
+              <nav className="drawer-links" aria-label="Mobile Navigation">
                 <a href="#Experience" onClick={() => setIsOpen(false)}>Experience</a>
                 <a href="#Skills" onClick={() => setIsOpen(false)}>Skills</a>
                 <a href="#Projects" onClick={() => setIsOpen(false)}>Projects</a>

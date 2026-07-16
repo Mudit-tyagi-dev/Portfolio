@@ -181,6 +181,7 @@ function ProjectsSection() {
                   src={project.image}
                   alt={project.title}
                   className="project-thumbnail"
+                  loading="lazy"
                 />
                 <div
                   className={`overlay ${hoveredProject === project.id ? "active" : ""}`}

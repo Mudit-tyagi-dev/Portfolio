@@ -339,6 +339,16 @@ header.header-container {
 
 /* Tablet viewports */
 @media (max-width: 1024px) {
+  .nav {
+    gap: 6px;
+    padding: 6px 12px;
+  }
+
+  .nav a {
+    font-size: 0.875rem;
+    padding: 6px 10px;
+  }
+
   .content {
     grid-template-columns: 1fr;
     gap: 40px;
