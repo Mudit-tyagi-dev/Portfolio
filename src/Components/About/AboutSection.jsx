@@ -314,6 +314,7 @@ const Cube = ({ activeFace, setActiveFace }) => {
             className={`cube-nav-btn ${index === activeFace ? "active" : ""}`}
             onClick={() => handleFaceSelect(index)}
             title={face.title}
+            aria-label={`Rotate cube to ${face.title} face`}
           >
             {face.icon}
           </button>
@@ -432,7 +433,6 @@ function AboutSection() {
               <StatItem number="10+" label="Projects Built" />
               <StatItem number="5+" label="Client & College Projects" />
               <StatItem number="Hackathon" label="Winner" />
-              <StatItem number="Student" label="Chairman" />
               <StatItem number="13+" label="Technologies" />
             </div>
           </motion.div>

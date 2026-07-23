@@ -87,7 +87,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 380px;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
   border-radius: 24px;
   animation: float-animation 6s ease-in-out infinite;
   z-index: 10;
@@ -130,8 +131,8 @@
 
 .profile-image-container img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 1;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 23px;
   object-fit: cover;
   display: block;
@@ -562,8 +563,8 @@ header.header-container.scrolled {
     font-size: 1rem;
   }
 
-  .profile img {
-    max-width: 300px;
+  .profile-image-wrapper {
+    max-width: 260px;
   }
 }
 
@@ -583,9 +584,15 @@ header.header-container.scrolled {
     line-height: 1.5;
   }
 
-  .profile img {
-    max-width: 240px;
-    border-radius: 12px;
+  .profile-image-wrapper {
+    max-width: 200px;
+    border-radius: 16px;
+  }
+  .profile-image-container {
+    border-radius: 16px;
+  }
+  .profile-image-container img {
+    border-radius: 15px;
   }
 
   .cta-group {

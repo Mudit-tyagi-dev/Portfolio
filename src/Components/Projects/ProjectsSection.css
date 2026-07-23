@@ -1,55 +1,85 @@
 .projects-section {
   width: 100%;
   padding: 100px 20px;
-  background-color: #000000;
+  background-color: #030303;
   position: relative;
   z-index: 1;
+  overflow: hidden;
+}
+
+/* Dynamic Spotlight Following the Cursor */
+.projects-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 255, 204, 0.04) 0%,
+    transparent 80%
+  );
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
 }
 
 .projects-container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.section-title {
-  font-size: clamp(2rem, 5vw, 3rem);
+/* Header style matching standard sections */
+.projects-section .section-title {
+  font-size: 3rem;
   text-align: center;
   color: white;
   margin: 0 0 16px 0;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.5px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.section-subtitle {
+.projects-section .section-subtitle {
   text-align: center;
-  color: #b0b0b0;
-  font-size: 1.0625rem;
-  margin: 0 0 60px 0;
+  color: #888888;
+  font-size: 1rem;
+  margin: 0 0 64px 0;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
   letter-spacing: 0.3px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
 }
 
+/* Grid Layout */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   margin-bottom: 40px;
 }
 
+/* Project Card Glassmorphism */
 .project-card {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 255, 204, 0.15);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(0, 255, 204, 0.12);
+  border-radius: 18px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .project-card::before {
@@ -59,15 +89,16 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #00ffcc, transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.4), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
+  z-index: 2;
 }
 
 .project-card:hover {
-  border-color: rgba(0, 255, 204, 0.4);
-  background: rgba(0, 255, 204, 0.04);
-  box-shadow: 0 16px 40px rgba(0, 255, 204, 0.1);
+  border-color: rgba(0, 255, 204, 0.38);
+  background: rgba(0, 255, 204, 0.02);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(0, 255, 204, 0.05);
   transform: translateY(-8px);
 }
 
@@ -75,13 +106,14 @@
   opacity: 1;
 }
 
+/* Project Image Presentation */
 .project-image {
   width: 100%;
-  height: 220px;
+  height: 200px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  transition: all 0.4s ease;
+  background: #08080a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .project-thumbnail {
@@ -89,178 +121,231 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.6s ease;
+  filter: contrast(1.02) brightness(0.9);
 }
 
-.project-card:hover .project-image {
-  transform: scale(1.04);
-}
-
-.overlay {
+/* Image overlay on hover */
+.project-image::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.88),
-    rgba(0, 0, 0, 0.25)
-  );
-  backdrop-filter: blur(3px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
+  background: linear-gradient(to bottom, transparent 30%, rgba(3, 3, 3, 0.85) 100%);
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
 }
 
-.overlay-buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+.project-card:hover .project-thumbnail {
+  transform: scale(1.06);
+  filter: contrast(1.06) brightness(0.95);
 }
 
-.icon-button {
-  width: 52px;
-  height: 52px;
-  border: 2px solid #00ffcc;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #00ffcc;
-  transition: all 0.3s ease;
-  background: transparent;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 1.25rem;
-}
-
-.icon-button:hover {
-  background-color: #00ffcc;
-  color: black;
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(0, 255, 204, 0.3);
-}
-
+/* Card Content Structure */
 .project-content {
-  padding: 28px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 16px;
+}
+
+/* Category & Role Header Line */
+.project-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 12px;
 }
 
+.project-category {
+  font-size: 0.72rem;
+  color: #00ffcc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.project-role-chip {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cccccc;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.project-card:hover .project-role-chip {
+  border-color: rgba(0, 255, 204, 0.2);
+  color: white;
+}
+
 .project-title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: white;
   margin: 0;
   font-weight: 700;
   letter-spacing: -0.3px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.project-role {
-  font-size: 0.8125rem;
+.project-card:hover .project-title {
   color: #00ffcc;
-  margin: 0;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.project-description {
-  font-size: 0.9375rem;
+/* Concise Product copy (Problem, Solution, Value) */
+.project-psv {
+  font-size: 0.9rem;
   color: #b0b0b0;
-  line-height: 1.6;
+  line-height: 1.55;
   margin: 0;
   flex: 1;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  letter-spacing: 0.2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
+.psv-line {
+  margin: 0;
+}
+
+.psv-line strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Highlights Grid */
+.project-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.highlight-tag {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(0, 255, 204, 0.04);
+  border: 1px solid rgba(0, 255, 204, 0.12);
+  color: #00ffcc;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .highlight-tag {
+  border-color: rgba(0, 255, 204, 0.25);
+  background: rgba(0, 255, 204, 0.08);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.05);
+}
+
+/* Tech Stack Container */
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 8px;
   padding-top: 16px;
-  border-top: 1px solid rgba(0, 255, 204, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(0, 255, 204, 0.08);
-  color: #00ffcc;
-  padding: 5px 14px;
+  background-color: rgba(255, 255, 255, 0.02);
+  color: #b0b0b0;
+  padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.75rem;
-  border: 1px solid rgba(0, 255, 204, 0.25);
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-weight: 500;
   transition: all 0.2s ease;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .tag:hover {
-  background-color: rgba(0, 255, 204, 0.15);
+  background-color: rgba(0, 255, 204, 0.08);
+  border-color: rgba(0, 255, 204, 0.35);
+  color: #00ffcc;
+}
+
+/* Immediate Action Buttons */
+.project-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.live-btn {
+  background: #00ffcc;
+  border: 1px solid #00ffcc;
+  color: #030303;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.15);
+}
+
+.live-btn:hover {
+  background: transparent;
+  color: #00ffcc;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+}
+
+.github-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.github-btn:hover {
   border-color: rgba(0, 255, 204, 0.4);
+  color: #00ffcc;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.1);
+  background: rgba(0, 255, 204, 0.01);
 }
 
-/* ==========================================================================
-   BREAKPOINTS RESPONSIVE OVERRIDES
-   ========================================================================== */
-
-/* Desktop Hover states trigger overlay */
-@media (min-width: 1025px) {
-  .project-card:hover .overlay {
-    opacity: 1;
-  }
-}
-
-/* Tablet Responsive: Exact 2 columns, tap-friendly overlays */
-@media (min-width: 768px) and (max-width: 1024px) {
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
   .projects-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
-
-  .project-image {
-    height: 200px;
-  }
-
-  /* Make overlay statically visible without blur so links are immediately tap-friendly */
-  .overlay {
-    opacity: 1 !important;
-    background: rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
 }
 
-/* Mobile Responsive: 1 column, tap-friendly overlays */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .projects-section {
-    padding: 60px 16px;
+    padding: 80px 16px;
   }
 
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 16px;
+  .projects-section .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
   }
 
-  .section-subtitle {
-    font-size: 1rem;
+  .projects-section .section-subtitle {
     margin-bottom: 40px;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px;
   }
 
   .project-image {
@@ -269,33 +354,55 @@
 
   .project-content {
     padding: 20px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 580px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  /* Tap-friendly: no blur, constant display of link buttons on top of image */
-  .overlay {
-    opacity: 1 !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  .icon-button {
-    width: 46px;
-    height: 46px;
-    font-size: 1.1rem;
+  .project-card {
+    border-radius: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .projects-section {
-    padding: 40px 12px;
+    padding: 60px 12px;
   }
 
-  .section-title {
-    font-size: 1.5rem;
+  .projects-section .section-title {
+    font-size: 1.8rem;
   }
 
-  .project-card {
-    border-radius: 8px;
+  .project-btn {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .projects-section::after {
+    display: none;
+  }
+
+  .project-card,
+  .project-thumbnail,
+  .project-btn,
+  .tag,
+  .highlight-tag {
+    transition: none !important;
+  }
+
+  .project-card:hover {
+    transform: none !important;
+  }
+
+  .project-card:hover .project-thumbnail {
+    transform: none !important;
   }
 }

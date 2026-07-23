@@ -1,121 +1,106 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiBookOpen } from "react-icons/fi";
 import "./ProjectsSection.css";
 
 function ProjectsSection() {
-  const [hoveredProject, setHoveredProject] = useState(null);
+  const sectionRef = useRef(null);
 
   const projects = [
     {
       id: 1,
       title: "PulseBI",
-      description:
-        "PulseBI is an AI-powered BI dashboard built for top-level executives who don't have a technical background. No SQL. No complex tools. Just ask a question in plain English PulseBI does the rest.",
-      tags: [
-        "React",
-        "Node.js",
-        "PostgreSQL",
-        "WebSocket",
-        "Tailwind CSS",
-        "chart.js",
-      ],
+      category: "AI Platform",
+      role: "Frontend Developer",
+      problem: "Non-technical leaders struggle to extract SQL database insights.",
+      solution: "Conversational AI translates plain English into visual charts.",
+      value: "Empowers instant, code-free business intelligence dashboards.",
+      highlights: ["Conversational BI", "Real-time Analytics", "No-SQL Queries"],
+      tags: ["React", "Node.js", "PostgreSQL", "WebSocket", "Tailwind CSS", "Chart.js"],
       image: "/Assets/1.webp",
       github: "https://github.com/Mudit-tyagi-dev/PulseBI",
       live: "https://bi-fast.vercel.app/",
-      role: "Frontend Developer",
     },
     {
       id: 2,
       title: "Factlyai",
-      description:
-        "Factly AI is an intelligent information verification platform that instantly analyzes content using real-time web search and advanced AI reasoning.",
-      tags: [
-        "React",
-        "Web Scraping",
-        "WebSocket",
-        " React Pdf Render",
-        "Tailwind CSS",
-        "Lucid React",
-      ],
+      category: "SaaS",
+      role: "Frontend Lead",
+      problem: "Online misinformation is hard to analyze and verify instantly.",
+      solution: "Real-time search scraping combined with LLM reasoning.",
+      value: "Delivers automated, credible content audits in seconds.",
+      highlights: ["Real-time Verify", "Deep Search AI", "Automated Reports"],
+      tags: ["React", "Web Scraping", "WebSocket", "React PDF Render", "Tailwind CSS"],
       image: "/Assets/2.webp",
       github: "https://github.com/Mudit-tyagi-dev/FactlyAi",
       live: "https://factlyai.vercel.app/",
-      role: "Frontend Lead",
     },
     {
       id: 3,
       title: "Vipin Tyagi and Company (Law Firm)",
-      description:
-        "Designed and developed a modern, responsive website for a law firm to establish a strong online presence. The website highlights legal services, practice areas, attorney profiles, office locations, and contact information with a professional UI, optimized performance, and mobile-friendly experience.",
+      category: "Business Website",
+      role: "Full Stack Developer",
+      problem: "Local law firms lack a high-performance digital identity.",
+      solution: "Custom web platform detailing attorneys, locations, and practices.",
+      value: "Establishes digital credibility and increases client inquiries.",
+      highlights: ["SEO Optimized", "Professional UI", "Responsive Layout"],
       tags: ["React", "Express.js", "GSAP", "Tailwind CSS", "Radix UI"],
       image: "/Assets/3.webp",
-      github:
-        "https://github.com/Mudit-tyagi-dev/Vipin-Tyagi-and-Company-law-Firm-",
+      github: "https://github.com/Mudit-tyagi-dev/Vipin-Tyagi-and-Company-law-Firm-",
       live: "https://vipin-tyagi-and-company-law-firm.vercel.app/",
-      role: "Full Stack Developer",
     },
     {
       id: 4,
       title: "My Portfolio Website",
-      description:
-        "Developed a modern, responsive portfolio website to showcase my skills and projects. The website features a clean design, smooth animations, and a user-friendly interface to provide an excellent user experience.",
-      tags: [
-        "React",
-        "Tailwind CSS",
-        "React Icons",
-        "Express.js",
-        "GSAP",
-        "Framer Motion",
-        "Lenis",
-      ],
+      category: "Creative UI",
+      role: "Full Stack Developer",
+      problem: "Developers struggle to stand out with static portfolio pages.",
+      solution: "Interactive 3D workspace showcasing key engineering projects.",
+      value: "Increases recruiter engagement with premium animations.",
+      highlights: ["GSAP & Motion", "Interactive 3D", "Fast Page Speed"],
+      tags: ["React", "Tailwind CSS", "GSAP", "Framer Motion", "Lenis Scroll"],
       image: "/Assets/6.webp",
       github: "https://github.com/Mudit-tyagi-dev/Portfolio",
       live: "https://mudittyagi.vercel.app/",
-      role: "Full Stack Developer",
     },
     {
       id: 5,
       title: "Library Management System",
-      description:
-        "Developed a Library Management System that integrates the Open Library API to search and fetch book information in real time. The system enables users to browse books, issue and return books, manage book inventory, track available copies, and monitor borrowing records through an intuitive and responsive interface.",
-      tags: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "PostgreSQL",
-        "Express.js",
-        "Node.js",
-        "Drizzle ORM",
-        "open Library API",
-      ],
+      category: "Library System",
+      role: "Full Stack Developer",
+      problem: "Libraries struggle with complex, slow inventory cataloging.",
+      solution: "Open Library API integration with Drizzle ORM inventory tracking.",
+      value: "Streamlines borrowing workflows and member audit records.",
+      highlights: ["Open Library API", "Drizzle SQL Schema", "Inventory Tracker"],
+      tags: ["PostgreSQL", "Express.js", "Node.js", "Drizzle ORM", "JavaScript"],
       image: "/Assets/4.webp",
       github: "https://github.com/Mudit-tyagi-dev/Library-Management",
       live: "https://library-management-frontend-nqit.onrender.com/",
-      role: "Full Stack Developer",
     },
     {
       id: 6,
       title: "Lofisvilla",
-      description:
-        "Developed a responsive music player web application inspired by Spotify, featuring a modern and intuitive interface. Implemented core music player functionalities including play, pause, seek, volume control, track switching, and playlist management using locally stored audio files to deliver a smooth listening experience across desktop and mobile devices.",
+      category: "Web App",
+      role: "Full Stack Developer",
+      problem: "Web-based music players are often slow and unresponsive on mobile.",
+      solution: "A Spotify-inspired player with custom local track handling.",
+      value: "Delivers zero-latency audio playback and playlist controls.",
+      highlights: ["Custom Audio API", "Mobile Responsive", "Local Playlists"],
       tags: ["HTML", "CSS", "JavaScript"],
       image: "/Assets/5.webp",
       github: "https://github.com/Mudit-tyagi-dev/lofisvilla",
       live: "https://lofisvilla.netlify.app/",
-      role: "Full Stack Developer",
     },
-    // {
-    //   id: 6,
-    //   title: "CMS Platform",
-    //   description: "Headless CMS with dynamic content management, multi-language support, and REST API for content delivery.",
-    //   tags: ["Next.js", "Strapi", "GraphQL", "PostgreSQL", "Vercel"],
-    //   image: "project-6",
-    //   github: "https://github.com",
-    //   live: "https://example.com",
-    //   role: "Full Stack Developer",
-    // },
   ];
+
+  const handleMouseMove = (e) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    sectionRef.current.style.setProperty("--mouse-x", `${x}px`);
+    sectionRef.current.style.setProperty("--mouse-y", `${y}px`);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -123,23 +108,29 @@ function ProjectsSection() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
-    <section id="Projects" className="projects-section">
+    <section
+      id="Projects"
+      className="projects-section"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+    >
       <div className="projects-container">
+        {/* Title */}
         <motion.h1
           className="section-title"
           initial={{ opacity: 0, y: -20 }}
@@ -154,12 +145,13 @@ function ProjectsSection() {
           className="section-subtitle"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           viewport={{ once: true }}
         >
-          Showcasing my best work and technical expertise across various domains
+          Showcasing production-ready SaaS systems, Web3 utilities, and interactive web apps
         </motion.p>
 
+        {/* 3-Column Grid */}
         <motion.div
           className="projects-grid"
           variants={containerVariants}
@@ -172,10 +164,8 @@ function ProjectsSection() {
               key={project.id}
               className="project-card"
               variants={itemVariants}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-              whileHover={{ y: -8 }}
             >
+              {/* Product Screenshot */}
               <div className="project-image">
                 <img
                   src={project.image}
@@ -183,41 +173,79 @@ function ProjectsSection() {
                   className="project-thumbnail"
                   loading="lazy"
                 />
-                <div
-                  className={`overlay ${hoveredProject === project.id ? "active" : ""}`}
-                >
-                  <div className="overlay-buttons">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="icon-button"
-                    >
-                      <FiGithub size={24} />
-                    </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="icon-button"
-                    >
-                      <FiExternalLink size={24} />
-                    </a>
-                  </div>
-                </div>
               </div>
 
+              {/* Card Body */}
               <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-role">{project.role}</p>
-                <p className="project-description">{project.description}</p>
+                {/* Meta Header */}
+                <div className="project-header-meta">
+                  <span className="project-category">{project.category}</span>
+                  <span className="project-role-chip">{project.role}</span>
+                </div>
 
+                <h3 className="project-title">{project.title}</h3>
+
+                {/* Problem-Solution-Value Block */}
+                <div className="project-psv">
+                  <p className="psv-line">
+                    <strong>Problem:</strong> {project.problem}
+                  </p>
+                  <p className="psv-line">
+                    <strong>Solution:</strong> {project.solution}
+                  </p>
+                  <p className="psv-line">
+                    <strong>Value:</strong> {project.value}
+                  </p>
+                </div>
+
+                {/* Checkmark Highlights */}
+                <div className="project-highlights">
+                  {project.highlights.map((highlight, index) => (
+                    <span key={index} className="highlight-tag">
+                      ✓ {highlight}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Tech Stack */}
                 <div className="project-tags">
                   {project.tags.map((tag, index) => (
                     <span key={index} className="tag">
                       {tag}
                     </span>
                   ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="project-actions">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-btn live-btn"
+                    >
+                      Live Demo <FiExternalLink size={14} />
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-btn github-btn"
+                    >
+                      GitHub <FiGithub size={14} />
+                    </a>
+                  )}
+                  {project.caseStudy && (
+                    <a
+                      href={project.caseStudy}
+                      className="project-btn case-btn"
+                    >
+                      Case Study <FiBookOpen size={14} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

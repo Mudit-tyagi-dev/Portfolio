@@ -267,7 +267,7 @@ function ProfessionalJourney() {
                 viewport={{ once: true, margin: "-50px" }}
               >
                 {journeyData[activeTab].items.map((item) => {
-                  const isOngoing = item.status.toLowerCase() === "ongoing";
+                  const isOngoing = item.status.toLowerCase().includes("active") || item.status.toLowerCase().includes("ongoing");
                   
                   return (
                     <motion.div

@@ -32,7 +32,7 @@ function FooterSection() {
     },
     {
       icon: FiMail,
-      url: "mudittyagi.dev@gmail.com",
+      url: "mailto:mudittyagi.dev@gmail.com",
       label: "Email",
     },
   ];
@@ -158,6 +158,7 @@ function FooterSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="footer-social-link"
+                    aria-label={`${social.label} Profile`}
                     variants={itemVariants}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.95 }}

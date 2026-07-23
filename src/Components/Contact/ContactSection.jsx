@@ -24,7 +24,6 @@ function ContactSection() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log("Form submitted:", formData);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -179,6 +178,7 @@ function ContactSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="social-link"
+                      aria-label={`${social.label} Profile`}
                       variants={itemVariants}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}

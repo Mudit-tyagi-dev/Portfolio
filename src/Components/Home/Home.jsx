@@ -365,8 +365,9 @@ function Home() {
             <div className="logo">
               <a
                 href="https://x.com/Mudit_Tyagi11"
-                type="button"
-                target="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter / X Profile"
                 data-twe-ripple-init
               >
                 <span>
@@ -383,8 +384,9 @@ function Home() {
               </a>
               <a
                 href="https://www.linkedin.com/in/mudit-tyagi11/"
-                target="#"
-                type="button"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
                 data-twe-ripple-init
               >
                 <span>
@@ -402,8 +404,9 @@ function Home() {
 
               <a
                 href="https://github.com/Mudit-tyagi-dev/"
-                target="#"
-                type="button"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
                 data-twe-ripple-init
               >
                 <span>
@@ -435,7 +438,7 @@ function Home() {
               <div className="profile-image-container">
                 <img 
                   src={profile} 
-                  alt="profile img" 
+                  alt="Mudit Tyagi Profile - Creative Full Stack Developer" 
                   style={{ transform: "translateZ(20px)" }} 
                 />
               </div>
