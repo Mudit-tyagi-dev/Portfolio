@@ -1,161 +1,442 @@
 .certifications-section {
   width: 100%;
-  padding: 80px 20px;
-  background-color: black;
+  padding: 100px 20px;
+  background-color: #030303;
   position: relative;
   z-index: 1;
+  overflow: hidden;
+}
+
+/* Background Radial Glow */
+.certifications-section::before {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(0, 255, 204, 0.05) 0%, rgba(0, 255, 204, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(100px);
 }
 
 .certifications-container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
-.section-title {
+/* Header styling matching Beyond the Code */
+.certifications-section .section-title {
   font-size: 3rem;
   text-align: center;
   color: white;
   margin-bottom: 60px;
-  font-weight: 500;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* Stats grid above columns */
+.cert-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.cert-stats-grid .stat-item {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(0, 255, 204, 0.08);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cert-stats-grid .stat-item:hover {
+  border-color: rgba(0, 255, 204, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 35px rgba(0, 255, 204, 0.05);
+}
+
+.cert-stats-grid .stat-number {
+  font-size: 2.2rem;
+  color: #00ffcc;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.cert-stats-grid .stat-suffix {
+  font-size: 1.8rem;
+  color: #00ffcc;
+}
+
+.cert-stats-grid .stat-label {
+  font-size: 0.8rem;
+  color: #999999;
+  margin: 8px 0 0 0;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Two Column Layout */
 .cert-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 60px;
+  align-items: start;
 }
 
 .cert-column {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
 }
 
 .column-title {
   font-size: 1.8rem;
-  color: #00ffcc;
-  margin-bottom: 20px;
-  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.certifications-list,
-.achievements-list {
+/* Accent highlight for Achievements title to indicate higher importance */
+.achievements-column-title::after {
+  content: "RECOMMENDED";
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  background: #00ffcc;
+  color: #030303;
+  border-radius: 4px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.certifications-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
-.cert-card,
-.achievement-card {
-  background: linear-gradient(135deg, rgba(0, 255, 204, 0.05) 0%, rgba(0, 255, 204, 0) 100%);
-  border: 1px solid rgba(0, 255, 204, 0.2);
-  border-radius: 12px;
-  padding: 20px;
+/* Left side Certifications Cards: Subtle & Muted */
+.cert-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 24px;
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: flex-start;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 
-.cert-card:hover,
-.achievement-card:hover {
-  border-color: rgba(0, 255, 204, 0.5);
-  background: linear-gradient(135deg, rgba(0, 255, 204, 0.1) 0%, rgba(0, 255, 204, 0.02) 100%);
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 204, 0.3);
+  background: rgba(0, 255, 204, 0.015);
+  box-shadow: 0 12px 40px rgba(0, 255, 204, 0.04);
 }
 
-.cert-icon,
-.achievement-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-  margin-top: 4px;
+.cert-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  transition: transform 0.4s ease;
 }
 
-.cert-content,
-.achievement-content {
+.cert-card:hover .cert-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.cert-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.cert-title,
-.achievement-title {
-  font-size: 1.1rem;
+.cert-title {
+  font-size: 1.15rem;
   color: white;
   margin: 0 0 6px 0;
   font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.cert-card:hover .cert-title {
+  color: #00ffcc;
 }
 
 .cert-issuer {
-  font-size: 0.9rem;
-  color: #00ffcc;
+  font-size: 0.95rem;
+  color: #a0a0a0;
   margin: 0 0 4px 0;
   font-weight: 500;
 }
 
 .cert-date {
   font-size: 0.85rem;
-  color: #b0b0b0;
+  color: #777777;
   margin: 0;
+}
+
+/* Right side Achievements List: Vertical Timeline indicator */
+.achievements-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-left: 36px;
+  border-left: 2px solid rgba(0, 255, 204, 0.1);
+}
+
+.achievement-wrapper {
+  position: relative;
+}
+
+/* Timeline Dot indicator */
+.achievement-dot {
+  position: absolute;
+  left: -45px; /* Centers exactly on the 2px border (36px + 8px dot radius + 1px border half = 45px) */
+  top: 28px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #030303;
+  border: 3px solid rgba(0, 255, 204, 0.4);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.1);
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hovering over card animates the dot */
+.achievement-wrapper:hover .achievement-dot {
+  background: #00ffcc;
+  border-color: #00ffcc;
+  box-shadow: 0 0 18px rgba(0, 255, 204, 0.7);
+  transform: scale(1.25);
+}
+
+/* Right side Achievements Cards: Higher Visual Importance */
+.achievement-card {
+  background: rgba(0, 255, 204, 0.015);
+  border: 1px solid rgba(0, 255, 204, 0.16);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.05) 0%, transparent 100%);
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 204, 0.5);
+  background: rgba(0, 255, 204, 0.03);
+  box-shadow: 0 15px 45px rgba(0, 255, 204, 0.12), 0 0 25px rgba(0, 255, 204, 0.06);
+}
+
+.achievement-card:hover::before {
+  opacity: 1;
+}
+
+.achievement-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+}
+
+.achievement-card:hover .achievement-icon {
+  transform: scale(1.22) rotate(-8deg);
+}
+
+.achievement-content {
+  flex: 1;
+}
+
+.achievement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.achievement-title {
+  font-size: 1.2rem;
+  color: white;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.achievement-card:hover .achievement-title {
+  color: #00ffcc;
+}
+
+/* Glowing tag chips */
+.achievement-tag {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(0, 255, 204, 0.08);
+  color: #00ffcc;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.05);
 }
 
 .achievement-description {
   font-size: 0.95rem;
-  color: #b0b0b0;
+  color: #a0a0a0;
   margin: 0;
   line-height: 1.6;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .certifications-section {
-    padding: 60px 16px;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 40px;
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .cert-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .cert-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .certifications-section {
+    padding: 80px 16px;
+  }
+
+  .certifications-section .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
   }
 
   .column-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
-  .cert-card,
-  .achievement-card {
-    padding: 16px;
+  .cert-stats-grid {
+    margin-bottom: 40px;
   }
 }
 
 @media (max-width: 480px) {
   .certifications-section {
-    padding: 40px 12px;
+    padding: 60px 12px;
   }
 
-  .section-title {
-    font-size: 1.5rem;
+  .certifications-section .section-title {
+    font-size: 1.8rem;
     margin-bottom: 30px;
   }
 
+  .cert-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .column-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .cert-card,
   .achievement-card {
-    padding: 14px;
-    gap: 12px;
+    padding: 16px;
+    gap: 14px;
   }
 
   .cert-icon,
   .achievement-icon {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
-  .cert-title,
+  .cert-title {
+    font-size: 1.05rem;
+  }
+
   .achievement-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .achievement-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .achievements-list {
+    padding-left: 24px;
+  }
+
+  .achievement-dot {
+    left: -33px;
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .cert-card,
+  .achievement-card,
+  .cert-icon,
+  .achievement-icon,
+  .achievement-dot,
+  .cert-stats-grid .stat-item {
+    transition: none !important;
+  }
+
+  .cert-card:hover,
+  .achievement-card:hover {
+    transform: none !important;
+  }
+
+  .cert-stats-grid .stat-item:hover {
+    transform: none !important;
   }
 }
