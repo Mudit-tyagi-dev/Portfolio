@@ -113,14 +113,13 @@ const Particles = ({
     resize();
 
     const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -((e.clientY / window.innerHeight) * 2 - 1);
       mouseRef.current = { x, y };
     };
 
     if (moveParticlesOnHover) {
-      container.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mousemove", handleMouseMove);
     }
 
     const count = particleCount;
@@ -169,6 +168,8 @@ const Particles = ({
     let animationFrameId;
     let lastTime = performance.now();
     let elapsed = 0;
+    const targetPos = { x: 0, y: 0 };
+    const currentPos = { x: 0, y: 0 };
 
     const update = (t) => {
       animationFrameId = requestAnimationFrame(update);
@@ -179,12 +180,19 @@ const Particles = ({
       program.uniforms.uTime.value = elapsed * 0.001;
 
       if (moveParticlesOnHover) {
-        particles.position.x = -mouseRef.current.x * particleHoverFactor;
-        particles.position.y = -mouseRef.current.y * particleHoverFactor;
+        targetPos.x = -mouseRef.current.x * particleHoverFactor;
+        targetPos.y = -mouseRef.current.y * particleHoverFactor;
       } else {
-        particles.position.x = 0;
-        particles.position.y = 0;
+        targetPos.x = 0;
+        targetPos.y = 0;
       }
+
+      // Smooth easing (lerp)
+      currentPos.x += (targetPos.x - currentPos.x) * 0.05;
+      currentPos.y += (targetPos.y - currentPos.y) * 0.05;
+
+      particles.position.x = currentPos.x;
+      particles.position.y = currentPos.y;
 
       if (!disableRotation) {
         particles.rotation.x = Math.sin(elapsed * 0.0002) * 0.1;
@@ -200,7 +208,7 @@ const Particles = ({
     return () => {
       window.removeEventListener("resize", resize);
       if (moveParticlesOnHover) {
-        container.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mousemove", handleMouseMove);
       }
       cancelAnimationFrame(animationFrameId);
       if (container.contains(gl.canvas)) {
@@ -239,6 +247,8 @@ export default function Background() {
         particleBaseSize={120}
         sizeRandomness={1}
         cameraDistance={20}
+        moveParticlesOnHover={true}
+        particleHoverFactor={0.4}
       />
     </div>
   );

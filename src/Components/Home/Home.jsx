@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import "./Home.css";
 import profile from "./profile.png";
 import TypingName from "./Typingname";
@@ -11,6 +11,48 @@ function Home() {
   const drawerRef = useRef(null);
   const triggerRef = useRef(null);
 
+  const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  const roles = [
+    "Creative Developer",
+    "Product Engineer",
+    "Full Stack Developer",
+    "Motion Designer",
+    "Building Interactive Experiences",
+  ];
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  // Framer Motion values for 3D image tilt
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const rotateX = useSpring(useTransform(mouseY, [0, 1], [8, -8]), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-8, 8]), { stiffness: 200, damping: 20 });
+
+  const handleMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  };
+
+  const navItems = [
+    { name: "Experience", href: "#Experience" },
+    { name: "Skills", href: "#Skills" },
+    { name: "Projects", href: "#Projects" },
+    { name: "About", href: "#About" },
+    { name: "Certifications", href: "#Certifications" },
+    { name: "Contact", href: "#Contact" },
+  ];
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -18,6 +60,51 @@ function Home() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Track scroll position for navbar shrinking
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Active section intersection observer
+  useEffect(() => {
+    const sections = ["Experience", "Skills", "Projects", "About", "Certifications", "Contact"];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: "-45% 0px -45% 0px", // triggers when section is in middle viewport
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Rotating roles interval
+  useEffect(() => {
+    const roleTimer = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2500);
+    return () => clearInterval(roleTimer);
   }, []);
 
   // ESC key listener to close menu
@@ -96,22 +183,50 @@ function Home() {
 
   return (
     <>
-      <header className="header-container">
+      <header className={`header-container ${scrolled ? "scrolled" : ""}`}>
         {/* On desktop, show the standard navbar list */}
         {!isMobile && (
-          <nav className="nav" aria-label="Main Navigation">
-            <a href="#Experience">Experience</a>
-            <a href="#Skills">Skills</a>
-            <a href="#Projects">Projects</a>
-            <a href="#About">About</a>
-            <a href="#Certifications">Certifications</a>
-            <a href="#Contact">Contact</a>
+          <nav className={`nav ${scrolled ? "scrolled" : ""}`} aria-label="Main Navigation">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.name;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`nav-item-link ${isActive ? "active" : ""}`}
+                  onMouseEnter={() => setHoveredItem(item.name)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  style={{ position: "relative" }}
+                >
+                  {/* Hover sliding pill indicator */}
+                  {hoveredItem === item.name && (
+                    <motion.span
+                      layoutId="navHover"
+                      className="nav-hover-pill"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="nav-item-text">{item.name}</span>
+                  {/* Active sliding line indicator */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="navActiveLine"
+                      className="nav-active-line"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
         )}
 
         {/* On mobile, show the header pill with toggle button */}
         {isMobile && (
-          <div className="mobile-nav-bar">
+          <div className={`mobile-nav-bar ${scrolled ? "scrolled" : ""}`}>
             <span className="mobile-logo-text">Mudit Tyagi</span>
             <button 
               ref={triggerRef}
@@ -183,12 +298,29 @@ function Home() {
         <div className="content">
           <div className="data">
             <TypingName />
-            <div className="data">
+            
+            {/* Animated rotating role text */}
+            <div className="role-container">
+              <span className="role-prefix">I am a </span>
+              <div className="role-wrapper">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={roles[currentRoleIndex]}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="role-text"
+                  >
+                    {roles[currentRoleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div className="data" style={{ gap: "24px" }}>
               <p className="sub-heading">
-                Passionate web developer skilled in HTML, CSS, JavaScript,
-                Node.js, and React. I build fast, modern, and responsive websites.
-                Constantly learning, exploring backend, and diving into AI and
-                machine learning.
+                I build scalable SaaS platforms, ERP systems, and immersive digital experiences by combining modern frontend engineering, motion design, and full stack development.
               </p>
             </div>
 
@@ -218,14 +350,17 @@ function Home() {
                 variant="ghost"
                 size="lg"
                 className="btn-link "
-                  style={{border: "1px solid rgb(0, 255, 204)"}}
+                style={{ border: "1px solid rgb(0, 255, 204)" }}
               >
                 Get in Touch
               </Button>
             </div>
             <div className="availability-badge">
-              <span className="status-dot"></span>
-              Available for Internship & Freelance Projects
+              <div className="status-dot-wrapper">
+                <span className="status-dot"></span>
+                <span className="status-pulse"></span>
+              </div>
+              Open for Creative Collaborations
             </div>
             <div className="logo">
               <a
@@ -286,7 +421,25 @@ function Home() {
             </div>
           </div>
           <div className="profile">
-            <img src={profile} alt="profile img" />
+            <motion.div
+              className="profile-image-wrapper"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+                perspective: 1000,
+              }}
+            >
+              <div className="profile-image-container">
+                <img 
+                  src={profile} 
+                  alt="profile img" 
+                  style={{ transform: "translateZ(20px)" }} 
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,30 @@
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
+}
+
+/* Micro-interaction: Shine sweeping hover effect */
+.premium-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: none;
+  pointer-events: none;
+}
+
+.premium-button:hover::before {
+  left: 150%;
+  transition: left 0.75s ease-in-out;
 }
 
 .premium-button:disabled {
@@ -33,14 +57,14 @@
 }
 
 .premium-button--primary:hover:not(:disabled) {
-  background-color: #00e6b8;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 255, 204, 0.3);
+  background-color: #00ffcc;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px -6px rgba(0, 255, 204, 0.45), 0 0 15px rgba(0, 255, 204, 0.15);
 }
 
 .premium-button--primary:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: 0 4px 8px rgba(0, 255, 204, 0.2);
+  transform: translateY(-1px) scale(1);
+  box-shadow: 0 6px 12px rgba(0, 255, 204, 0.25);
 }
 
 /* Secondary Variant */
@@ -51,13 +75,15 @@
 }
 
 .premium-button--secondary:hover:not(:disabled) {
-  background-color: rgba(0, 255, 204, 0.1);
+  background-color: rgba(0, 255, 204, 0.05);
   border-color: #00ffcc;
-  box-shadow: 0 8px 16px rgba(0, 255, 204, 0.2);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px -6px rgba(0, 255, 204, 0.3), 0 0 15px rgba(0, 255, 204, 0.1);
 }
 
 .premium-button--secondary:active:not(:disabled) {
-  background-color: rgba(0, 255, 204, 0.05);
+  transform: translateY(-1px) scale(1);
+  background-color: rgba(0, 255, 204, 0.08);
 }
 
 /* Ghost Variant */
@@ -67,12 +93,14 @@
 }
 
 .premium-button--ghost:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px -6px rgba(255, 255, 255, 0.1);
 }
 
 .premium-button--ghost:active:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px) scale(1);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 /* Size Variants */

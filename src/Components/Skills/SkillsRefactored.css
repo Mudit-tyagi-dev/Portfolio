@@ -1,10 +1,40 @@
 .skills-section {
   width: 100%;
   padding: 100px 20px;
-  background-color: #000000;
+  background-color: rgba(5, 5, 5, 0.7); /* Translucent dark background to let global stars through */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   position: relative;
   z-index: 10;
   overflow: hidden;
+}
+
+/* Faint background grid pattern */
+.skills-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 204, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 204, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Ambient backlight glow overlay */
+.skills-section::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(0, 255, 204, 0.03) 0%, rgba(59, 130, 246, 0.01) 50%, rgba(0, 0, 0, 0) 70%);
+  z-index: -2;
+  filter: blur(80px);
+  pointer-events: none;
 }
 
 .skills-container-layout {
@@ -36,17 +66,16 @@
   color: #ffffff;
   margin: 0 0 16px 0;
   letter-spacing: -1px;
-  text-transform: uppercase;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   position: relative;
 }
 
 .skills-subtitle-arsenal {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.75;
   color: #a0a0a0;
   margin: 0;
-  max-width: 380px;
+  max-width: 420px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -85,12 +114,12 @@
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1.5px solid rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  color: #e0e0e0;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  color: #b3b3b3;
   font-size: 0.9rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
   cursor: pointer;
   position: relative;
@@ -107,7 +136,7 @@
   width: 3px;
   background-color: #00ffcc;
   transform: scaleY(0);
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: bottom;
 }
 
@@ -122,9 +151,9 @@
 .category-skill-item:focus-visible,
 .category-skill-item.item-active {
   color: #ffffff;
-  border-color: rgba(0, 255, 204, 0.3);
-  background: rgba(0, 255, 204, 0.03);
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.1);
+  border-color: rgba(0, 255, 204, 0.25);
+  background: rgba(0, 255, 204, 0.02);
+  box-shadow: 0 10px 25px -10px rgba(0, 255, 204, 0.15);
   padding-left: 20px; /* shift slightly to create organic movement */
 }
 
@@ -149,6 +178,25 @@
 .category-skill-name {
   font-weight: 600;
   letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Subtle Coming Soon and Learning Tag styling */
+.skill-status-tag {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #00ffcc;
+  background: rgba(0, 255, 204, 0.08);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -164,7 +212,6 @@
   border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 24px;
   overflow: hidden;
-  /* Setup center coordinate defaults for variables */
   --mouse-x: 50%;
   --mouse-y: 50%;
 }
@@ -208,20 +255,35 @@
 
 /* Glassmorphism technology cards */
 .floating-card {
-  width: 150px;
-  height: 100px;
-  border-radius: 14px;
+  border-radius: 16px;
   cursor: pointer;
   outline: none;
   transform-style: preserve-3d;
   will-change: transform, opacity;
+  perspective: 1000px;
+}
+
+/* Hierarchy card sizes */
+.floating-card.size-lg {
+  width: 165px;
+  height: 105px;
+}
+
+.floating-card.size-md {
+  width: 145px;
+  height: 92px;
+}
+
+.floating-card.size-sm {
+  width: 125px;
+  height: 78px;
 }
 
 /* Glow outline behind card on hover */
 .floating-card-glow {
   position: absolute;
   inset: -1px;
-  border-radius: 15px;
+  border-radius: 17px;
   background: radial-gradient(circle at 50% 50%, rgba(0, 255, 204, 0.22), transparent 75%);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -232,26 +294,28 @@
 .floating-card-inner {
   position: absolute;
   inset: 0;
-  background: rgba(8, 8, 8, 0.65); /* frosted dark glass */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  padding: 14px;
+  background: rgba(12, 12, 12, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.7);
-  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
 }
 
 .floating-card:hover .floating-card-inner,
 .floating-card.hovered .floating-card-inner {
-  border-color: rgba(0, 255, 204, 0.45);
-  background: rgba(0, 0, 0, 0.85);
-  box-shadow: 0 12px 30px -10px rgba(0, 255, 204, 0.15), 0 0 2px rgba(0, 255, 204, 0.2);
+  border-color: rgba(0, 255, 204, 0.5);
+  background: rgba(15, 15, 15, 0.8);
+  box-shadow: 0 20px 40px -10px rgba(0, 255, 204, 0.15), 0 0 30px rgba(0, 255, 204, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transform: translateZ(10px); /* 3D layer pop */
 }
 
 .floating-card:hover .floating-card-glow,
@@ -273,6 +337,15 @@
   will-change: transform;
 }
 
+/* Scale adjustments based on card hierarchy size */
+.floating-card.size-sm .floating-card-icon {
+  font-size: 1.5rem;
+}
+
+.floating-card.size-lg .floating-card-icon {
+  font-size: 2.1rem;
+}
+
 .floating-card-text-wrapper {
   display: flex;
   flex-direction: column;
@@ -284,9 +357,13 @@
 .floating-card-name {
   font-size: 0.85rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
+}
+
+.floating-card.size-sm .floating-card-name {
+  font-size: 0.75rem;
 }
 
 .floating-card:hover .floating-card-name,
@@ -297,13 +374,18 @@
 .floating-card-subtitle {
   font-size: 0.65rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.2px;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+  margin-top: 2px;
+}
+
+.floating-card.size-sm .floating-card-subtitle {
+  font-size: 0.58rem;
 }
 
 /* ==========================================================================
@@ -325,17 +407,35 @@
     min-height: 580px;
   }
 
-  .floating-card {
-    width: 130px;
-    height: 90px;
+  /* Responsive card sizes on tablets */
+  .floating-card.size-lg {
+    width: 145px;
+    height: 95px;
+  }
+  .floating-card.size-md {
+    width: 125px;
+    height: 82px;
+  }
+  .floating-card.size-sm {
+    width: 110px;
+    height: 70px;
   }
 
   .floating-card-icon {
     font-size: 1.65rem;
   }
+  .floating-card.size-lg .floating-card-icon {
+    font-size: 1.85rem;
+  }
+  .floating-card.size-sm .floating-card-icon {
+    font-size: 1.35rem;
+  }
 
   .floating-card-name {
     font-size: 0.78rem;
+  }
+  .floating-card.size-sm .floating-card-name {
+    font-size: 0.7rem;
   }
 
   .floating-card-subtitle {
@@ -357,19 +457,33 @@
     min-height: 540px;
   }
 
-  .floating-card {
+  /* Deeper shrink rules for narrow tablet viewports */
+  .floating-card.size-lg {
+    width: 125px;
+    height: 85px;
+  }
+  .floating-card.size-md {
     width: 110px;
-    height: 80px;
+    height: 72px;
+  }
+  .floating-card.size-sm {
+    width: 98px;
+    height: 60px;
   }
 
   .floating-card-icon {
     font-size: 1.4rem;
   }
+  .floating-card.size-lg .floating-card-icon {
+    font-size: 1.6rem;
+  }
+  .floating-card.size-sm .floating-card-icon {
+    font-size: 1.25rem;
+  }
 
   .floating-card-name {
     font-size: 0.72rem;
   }
-
   .floating-card-subtitle {
     font-size: 0.58rem;
   }

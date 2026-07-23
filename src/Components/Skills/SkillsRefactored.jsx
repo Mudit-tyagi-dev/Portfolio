@@ -15,11 +15,22 @@ const GsapIcon = (props) => (
   </svg>
 );
 
+// Custom premium wireframe triangulated prism SVG for Three.js
+const ThreejsIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+    <path d="M2 7v10l10 5V12L2 7z" />
+    <path d="M22 7v10l-10 5V12l10-5z" />
+  </svg>
+);
+
 // Map official brand colors to icons (text remains white)
 const brandColors = {
   "React": "#61DAFB",
+  "React Three Fiber": "#61DAFB",
   "Node.js": "#339933",
   "JavaScript": "#F7DF1E",
+  "Three.js": "#FFFFFF",
   "Tailwind CSS": "#06B6D4",
   "Tailwind": "#06B6D4",
   "Bootstrap": "#7952B3",
@@ -106,9 +117,7 @@ export default function SkillsRefactored() {
         { name: "React", icon: <FaReact /> },
         { name: "JavaScript", icon: <SiJavascript /> },
         { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-        { name: "Bootstrap", icon: <FaBootstrap /> },
-        { name: "GSAP", icon: <GsapIcon /> },
-        { name: "Framer Motion", icon: <SiFramer /> },
+        { name: "Bootstrap", icon: <FaBootstrap /> }
       ],
     },
     {
@@ -117,6 +126,16 @@ export default function SkillsRefactored() {
       skills: [
         { name: "Node.js", icon: <FaNodeJs /> },
         { name: "Express.js", icon: <SiExpress /> },
+      ],
+    },
+    {
+      id: "creative",
+      title: "Creative Development",
+      skills: [
+        { name: "GSAP", icon: <GsapIcon /> },
+        { name: "Framer Motion", icon: <SiFramer /> },
+        { name: "Three.js", icon: <ThreejsIcon />, label: "Coming Soon" },
+        { name: "React Three Fiber", icon: <FaReact />, label: "Learning" }
       ],
     },
     {
@@ -142,59 +161,65 @@ export default function SkillsRefactored() {
     },
   ];
 
-  // 10 floating technologies with brand icons, names, and custom subtitles
+  // 12 floating technologies with brand icons, names, sizes, and custom subtitles
   const floatingCards = [
-    { name: "React", icon: <FaReact aria-hidden="true" />, subtitle: "Frontend Library" },
-    { name: "Node.js", icon: <FaNodeJs aria-hidden="true" />, subtitle: "Runtime Environment" },
-    { name: "JavaScript", icon: <SiJavascript aria-hidden="true" />, subtitle: "Language Core" },
-    { name: "Tailwind", icon: <SiTailwindcss aria-hidden="true" />, subtitle: "Utility CSS" },
-    { name: "PostgreSQL", icon: <SiPostgresql aria-hidden="true" />, subtitle: "Relational Database" },
-    { name: "MongoDB", icon: <SiMongodb aria-hidden="true" />, subtitle: "NoSQL Database" },
-    { name: "Figma", icon: <FaFigma aria-hidden="true" />, subtitle: "UI/UX Design" },
-    { name: "Express", icon: <SiExpress aria-hidden="true" />, subtitle: "Backend Framework" },
-    { name: "GSAP", icon: <GsapIcon aria-hidden="true" />, subtitle: "Rich Animations" },
-    { name: "Docker", icon: <FaDocker aria-hidden="true" />, subtitle: "Containerization" }
+    { name: "React", icon: <FaReact aria-hidden="true" />, subtitle: "Frontend Library", size: "lg" },
+    { name: "Node.js", icon: <FaNodeJs aria-hidden="true" />, subtitle: "Runtime Environment", size: "lg" },
+    { name: "JavaScript", icon: <SiJavascript aria-hidden="true" />, subtitle: "Language Core", size: "lg" },
+    { name: "Three.js", icon: <ThreejsIcon aria-hidden="true" />, subtitle: "3D Graphics", size: "lg" },
+    { name: "GSAP", icon: <GsapIcon aria-hidden="true" />, subtitle: "Rich Animations", size: "md" },
+    { name: "Framer Motion", icon: <SiFramer aria-hidden="true" />, subtitle: "Physics Motion", size: "md" },
+    { name: "Tailwind CSS", icon: <SiTailwindcss aria-hidden="true" />, subtitle: "Utility CSS", size: "md" },
+    { name: "PostgreSQL", icon: <SiPostgresql aria-hidden="true" />, subtitle: "Relational Database", size: "md" },
+    { name: "MongoDB", icon: <SiMongodb aria-hidden="true" />, subtitle: "NoSQL Database", size: "md" },
+    { name: "Drizzle ORM", icon: <SiDrizzle aria-hidden="true" />, subtitle: "TypeScript ORM", size: "sm" },
+    { name: "Docker", icon: <FaDocker aria-hidden="true" />, subtitle: "Containerization", size: "sm" },
+    { name: "Vercel", icon: <SiVercel aria-hidden="true" />, subtitle: "Deployment", size: "sm" }
   ];
 
-  // Deterministic organic grids layout coordinates to prevent overlap and boundaries overflows
+  // Deterministic layout coordinates across 4 rows and 3 columns to prevent overlaps
   const initialPositions = useMemo(() => {
     const slots = [
-      { col: 0, row: 0 }, // React
-      { col: 2, row: 0 }, // Node.js
-      { col: 1, row: 1 }, // JavaScript
-      { col: 2, row: 1 }, // Tailwind
-      { col: 0, row: 2 }, // PostgreSQL
-      { col: 1, row: 2 }, // MongoDB
-      { col: 0, row: 1 }, // Figma
-      { col: 2, row: 2 }, // Express
-      { col: 0, row: 3 }, // GSAP
-      { col: 1, row: 3 }  // Docker
+      { col: 0, row: 0 }, // React (lg)
+      { col: 2, row: 0 }, // Node.js (lg)
+      { col: 1, row: 1 }, // JavaScript (lg)
+      { col: 1, row: 0 }, // Three.js (lg)
+      { col: 0, row: 1 }, // GSAP (md)
+      { col: 2, row: 1 }, // Framer Motion (md)
+      { col: 2, row: 2 }, // Tailwind (md)
+      { col: 0, row: 2 }, // PostgreSQL (md)
+      { col: 1, row: 2 }, // MongoDB (md)
+      { col: 0, row: 3 }, // Drizzle ORM (sm)
+      { col: 1, row: 3 }, // Docker (sm)
+      { col: 2, row: 3 }  // Vercel (sm)
     ];
     return slots.map((slot, i) => {
-      // Deterministic trigonometric shift to make initial offsets look organic and randomized
-      const offsetX = Math.sin(i * 1.7) * 4;
-      const offsetY = Math.cos(i * 2.3) * 3;
-      const left = slot.col * 33 + 7 + offsetX;
-      const top = slot.row * 23 + 5 + offsetY;
+      // Deterministic offsets for a premium organic feel
+      const offsetX = Math.sin(i * 1.7) * 3;
+      const offsetY = Math.cos(i * 2.3) * 2;
+      const left = slot.col * 31 + 6 + offsetX;
+      const top = slot.row * 22 + 4 + offsetY;
       return {
         left: `${Math.max(2, Math.min(84, left))}%`,
-        top: `${Math.max(2, Math.min(88, top))}%`
+        top: `${Math.max(2, Math.min(86, top))}%`
       };
     });
   }, []);
 
-  // 10 distinct zero-gravity floating trajectories with varying bounds, speeds, and delays
+  // 12 distinct trajectories with slow speeds (slowing times to 10s-13s) for a premium low-gravity floating feel
   const floatAnimations = [
-    { x: [0, 10, -7, 8, -4, 0], y: [0, -14, 10, -11, 14, 0], rotate: [0, 3, -2, 4, -1, 0], duration: 6.2, delay: 0.1 },
-    { x: [0, -8, 12, -6, 8, 0], y: [0, 11, -9, 13, -7, 0], rotate: [0, -4, 2, -3, 3, 0], duration: 7.5, delay: 0.5 },
-    { x: [0, 7, -11, 5, -8, 0], y: [0, -10, 14, -7, 11, 0], rotate: [0, 2, -3, 2, -2, 0], duration: 5.8, delay: 1.2 },
-    { x: [0, -12, 8, -9, 5, 0], y: [0, 15, -7, 11, -8, 0], rotate: [0, -3, 3, -2, 2, 0], duration: 8.0, delay: 0.3 },
-    { x: [0, 8, -12, 7, -6, 0], y: [0, -11, 15, -9, 8, 0], rotate: [0, 3, -3, 3, -2, 0], duration: 6.8, delay: 1.8 },
-    { x: [0, -10, 7, -8, 11, 0], y: [0, 8, -12, 10, -11, 0], rotate: [0, -2, 3, -3, 3, 0], duration: 7.2, delay: 0.8 },
-    { x: [0, 11, -8, 10, -10, 0], y: [0, -14, 8, -13, 7, 0], rotate: [0, 3, -3, 2, -1, 0], duration: 6.0, delay: 2.2 },
-    { x: [0, -7, 10, -5, 8, 0], y: [0, 10, -14, 9, -13, 0], rotate: [0, -3, 2, -3, 3, 0], duration: 6.5, delay: 1.5 },
-    { x: [0, 9, -6, 8, -8, 0], y: [0, -11, 9, -9, 11, 0], rotate: [0, 2, -2, 3, -2, 0], duration: 7.0, delay: 0.9 },
-    { x: [0, -11, 11, -7, 9, 0], y: [0, 13, -11, 11, -9, 0], rotate: [0, -3, 3, -2, 4, 0], duration: 7.8, delay: 1.6 },
+    { x: [0, 6, -4, 5, -2, 0], y: [0, -8, 6, -7, 8, 0], rotate: [0, 2, -1, 2, -1, 0], duration: 10.2, delay: 0.1 },
+    { x: [0, -5, 8, -4, 5, 0], y: [0, 7, -5, 8, -4, 0], rotate: [0, -2, 1, -2, 2, 0], duration: 12.5, delay: 0.5 },
+    { x: [0, 4, -7, 3, -5, 0], y: [0, -6, 9, -4, 7, 0], rotate: [0, 1, -2, 1, -1, 0], duration: 9.8, delay: 1.2 },
+    { x: [0, -8, 5, -6, 3, 0], y: [0, 10, -4, 7, -5, 0], rotate: [0, -2, 2, -1, 1, 0], duration: 13.0, delay: 0.3 },
+    { x: [0, 5, -8, 4, -4, 0], y: [0, -7, 10, -6, 5, 0], rotate: [0, 2, -2, 2, -1, 0], duration: 11.2, delay: 1.8 },
+    { x: [0, -6, 4, -5, 7, 0], y: [0, 5, -8, 6, -7, 0], rotate: [0, -1, 2, -2, 2, 0], duration: 11.8, delay: 0.8 },
+    { x: [0, 7, -5, 6, -6, 0], y: [0, -9, 5, -8, 4, 0], rotate: [0, 2, -2, 1, -1, 0], duration: 10.0, delay: 2.2 },
+    { x: [0, -4, 6, -3, 5, 0], y: [0, 6, -9, 6, -8, 0], rotate: [0, -2, 1, -2, 2, 0], duration: 10.8, delay: 1.5 },
+    { x: [0, 6, -4, 5, -5, 0], y: [0, -7, 6, -6, 7, 0], rotate: [0, 1, -1, 2, -1, 0], duration: 11.5, delay: 0.9 },
+    { x: [0, -7, 7, -4, 6, 0], y: [0, 8, -7, 7, -6, 0], rotate: [0, -2, 2, -1, 2, 0], duration: 12.8, delay: 1.6 },
+    { x: [0, 5, -6, 4, -3, 0], y: [0, -8, 7, -5, 6, 0], rotate: [0, 1, -2, 1, -1, 0], duration: 10.5, delay: 0.7 },
+    { x: [0, -6, 8, -5, 4, 0], y: [0, 9, -6, 8, -6, 0], rotate: [0, -2, 1, -2, 1, 0], duration: 12.2, delay: 1.1 },
   ];
 
   return (
@@ -203,9 +228,9 @@ export default function SkillsRefactored() {
         {/* LEFT COLUMN: Categorized list of technologies */}
         <div className="skills-left-column">
           <div className="skills-header-wrapper">
-            <h2 id="skills-heading" className="skills-title-arsenal">Tech Arsenal</h2>
+            <h2 id="skills-heading" className="skills-title-arsenal">Technology Ecosystem</h2>
             <p className="skills-subtitle-arsenal">
-              The technologies I use to build scalable, high-performance web applications.
+              Every technology in my stack is carefully selected to build scalable SaaS platforms, business systems, and immersive digital experiences.
             </p>
           </div>
 
@@ -235,7 +260,12 @@ export default function SkillsRefactored() {
                         >
                           {skill.icon}
                         </span>
-                        <span className="category-skill-name">{skill.name}</span>
+                        <span className="category-skill-name">
+                          {skill.name}
+                          {skill.label && (
+                            <span className="skill-status-tag">{skill.label}</span>
+                          )}
+                        </span>
                       </div>
                     );
                   })}
@@ -267,7 +297,7 @@ export default function SkillsRefactored() {
               const shouldAnimate = !isMobile && !shouldReduceMotion;
 
               // Generate custom depth scale multiplier per card for premium 3D Parallax feel
-              const depthFactor = 5 + (index % 3) * 2; // outputs 5px, 7px, 9px parallax offsets
+              const depthFactor = 6 + (index % 3) * 2; // outputs 6px, 8px, 10px parallax offsets
               
               // Parallax transformations mapped from spring variables
               const cardX = useTransform(xSpring, [-1, 1], [-depthFactor, depthFactor]);
@@ -278,7 +308,7 @@ export default function SkillsRefactored() {
                 ? {
                     animate: isCardActive 
                       ? {
-                          scale: 1.06,
+                          scale: 1.08,
                           x: 0,
                           y: 0,
                           rotate: 0,
@@ -290,7 +320,7 @@ export default function SkillsRefactored() {
                           rotate: float.rotate,
                         },
                     transition: isCardActive
-                      ? { duration: 0.35, ease: "easeOut" }
+                      ? { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
                       : {
                           x: {
                             duration: float.duration,
@@ -336,7 +366,7 @@ export default function SkillsRefactored() {
                   }}
                 >
                   <motion.div
-                    className={`floating-card ${isCardActive ? "hovered" : ""}`}
+                    className={`floating-card size-${card.size} ${isCardActive ? "hovered" : ""}`}
                     {...motionProps}
                     onMouseEnter={() => setActiveSkill(card.name)}
                     onMouseLeave={() => setActiveSkill(null)}
@@ -347,11 +377,14 @@ export default function SkillsRefactored() {
                   >
                     <div className="floating-card-glow" aria-hidden="true" />
                     <div className="floating-card-inner">
-                      {/* Icon with brand colors which rotates slightly on hover */}
+                      {/* Icon with brand colors which rotates and scales slightly on hover */}
                       <motion.span 
                         className="floating-card-icon" 
                         style={{ color: brandColors[card.name] || "currentColor" }}
-                        animate={{ rotate: isCardActive ? 15 : 0 }}
+                        animate={{ 
+                          rotate: isCardActive ? 12 : 0,
+                          scale: isCardActive ? 1.15 : 1
+                        }}
                         transition={{ duration: 0.3 }}
                         aria-hidden="true"
                       >
@@ -367,7 +400,7 @@ export default function SkillsRefactored() {
                             <motion.span
                               className="floating-card-subtitle"
                               initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 0.7, height: "auto" }}
+                              animate={{ opacity: 0.75, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.25, ease: "easeOut" }}
                             >
