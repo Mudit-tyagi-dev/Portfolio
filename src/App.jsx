@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Lenis from "lenis";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, } from "framer-motion";
 // import Lenis from "@studio-freight/lenis";
 
 import Intro from "./Intro/Intro.jsx";
@@ -47,31 +47,52 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app-wrapper">
-      {/* ✅ GLOBAL PARTICLE BACKGROUND */}
-      <Background />
+    // <div className="app-wrapper">
+    //   <Background />
 
-      <AnimatePresence mode="wait">
-        {showIntro ? (
-          <Intro key="intro" onFinish={() => setShowIntro(false)} />
-        ) : (
-          <motion.div
-            key="main"
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <Home />
-            <ProfessionalJourney />
-            <SkillsRefactored />
-            <ProjectsSection />
-            <AboutSection />
-            <Certifications />
-            <ContactSection />
-            <FooterSection />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    //   {/* <AnimatePresence mode="wait">
+    //     {showIntro ? (
+    //       <Intro key="intro" onFinish={() => setShowIntro(false)} />
+    //     ) : (
+          
+    //     )}
+    //   </AnimatePresence> */}
+    //   <motion.div
+    //         key="main"
+    //         initial={{ scale: 1, opacity: 0 }}
+    //         animate={{ scale: 1, opacity: 1 }}
+    //         // transition={{ duration: 1 }}
+    //       >
+    //         <Home />
+    //         <ProfessionalJourney />
+    //         <SkillsRefactored />
+    //         <ProjectsSection />
+    //         <AboutSection />
+    //         <Certifications />
+    //         <ContactSection />
+    //         <FooterSection />
+    //       </motion.div>
+    // </div>
+ <div className="app-wrapper">
+    <Background />
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <Home />
+      <ProfessionalJourney />
+      <SkillsRefactored />
+      <ProjectsSection />
+      <AboutSection />
+      <Certifications />
+      <ContactSection />
+      <FooterSection />
+    </motion.div>
+  </div>
   );
 }

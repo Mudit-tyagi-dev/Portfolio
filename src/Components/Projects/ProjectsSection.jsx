@@ -45,9 +45,9 @@ function ProjectsSection() {
       value: "Establishes digital credibility and increases client inquiries.",
       highlights: ["SEO Optimized", "Professional UI", "Responsive Layout"],
       tags: ["React", "Express.js", "GSAP", "Tailwind CSS", "Radix UI"],
-      image: "/Assets/3.webp",
+      image: "/Assets/vip.png",
       github: "https://github.com/Mudit-tyagi-dev/Vipin-Tyagi-and-Company-law-Firm-",
-      live: "https://vipin-tyagi-and-company-law-firm.vercel.app/",
+      live: "https://www.vipintyagiandcompany.com/",
     },
     {
       id: 4,

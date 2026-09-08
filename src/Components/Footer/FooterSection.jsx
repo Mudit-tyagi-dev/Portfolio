@@ -116,9 +116,28 @@ function FooterSection() {
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+              <a href="#" className="footer-link">
                   Full Stack Solutions
                 </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               </li>
               <li>
                 <a href="#" className="footer-link">
