@@ -134,8 +134,8 @@ export default function SkillsRefactored() {
       skills: [
         { name: "GSAP", icon: <GsapIcon /> },
         { name: "Framer Motion", icon: <SiFramer /> },
-        { name: "Three.js", icon: <ThreejsIcon />, label: "Coming Soon" },
-        { name: "React Three Fiber", icon: <FaReact />, label: "Learning" }
+        // { name: "Three.js", icon: <ThreejsIcon />, label: "Coming Soon" },
+        // { name: "React Three Fiber", icon: <FaReact />, label: "Learning" }
       ],
     },
     {

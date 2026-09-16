@@ -13,17 +13,25 @@ function ProfessionalJourney() {
         {
           id: 1,
           name: "Vipin Tyagi and Company (law Firm)",
-          description: "Developed a responsive website for a law firm, enhancing their online presence and client engagement.",
+          description:
+            "Developed a responsive website for a law firm, enhancing their online presence and client engagement.",
           year: "2026",
-          technologies: ["React", "GSAP", "Tailwind CSS", "Framer Motion", "Express.js", "Node.js"],
+          technologies: [
+            "React",
+            "GSAP",
+            "Tailwind CSS",
+            "Framer Motion",
+            "Express.js",
+            "Node.js",
+          ],
           status: "Completed",
           contributions: [
             "Designed and developed a fully responsive React frontend with fluid GSAP animations",
             "Implemented a secure backend using Node.js and Express.js to handle client inquiries",
             "Optimized website assets and structure, achieving a perfect Google Lighthouse performance score",
-            "Integrated a customized contact form with automated email notifications for new queries"
-          ]
-        }
+            "Integrated a customized contact form with automated email notifications for new queries",
+          ],
+        },
       ],
     },
     hackathons: {
@@ -33,16 +41,44 @@ function ProfessionalJourney() {
         {
           id: 1,
           name: "HackFest 2026",
-          description: "Winner of GeeksforGeeks HackFest 2026, developed an innovative solution for real-time data visualization.",
+          description:
+            "Winner of GeeksforGeeks HackFest 2026, developed an innovative solution for real-time data visualization.",
           year: "2026",
-          technologies: ["React", "Tailwind CSS", "Zustand", "chartjs", "FAST API"],
+          technologies: [
+            "React",
+            "Tailwind CSS",
+            "Zustand",
+            "chartjs",
+            "FAST API",
+          ],
           status: "Ranked 1st",
           contributions: [
             "Architected and built the React frontend utilizing Chart.js for real-time visual analytics",
             "Implemented dynamic global state management using Zustand to handle streaming data",
             "Integrated FastAPI backend endpoints with minimal latency and high throughput",
-            "Presented the project to industry leaders, securing 1st place among 100+ competing teams"
-          ]
+            "Presented the project to industry leaders, securing 1st place among 100+ competing teams",
+          ],
+        },
+        {
+          id: 2,
+          name: "Odoo Hackathon 2026, Gandhinagar, Gujarat",
+          description:
+            "Advanced to the final round of Odoo Hackathon 2026 after clearing the virtual qualification round.",
+          year: "2026",
+          technologies: [
+            "React",
+            "Node.js",
+            "PostgreSQL",
+            "Team Collaboration",
+            "Tailwind CSS",
+          ],
+          status: "Finalist",
+          contributions: [
+            "Cleared the virtual qualification round among 20,000+ participants",
+            "Advanced to the final round with approximately 6,500 participants remaining",
+            "Developed and presented a team-based software solution for the hackathon challenge",
+            "Collaborated with the team on solution development, implementation and presentation",
+          ],
         },
       ],
     },
@@ -53,34 +89,44 @@ function ProfessionalJourney() {
         {
           id: 1,
           name: "Student Chairman – Coding Club",
-          description: "Conducted weekly workshops teaching modern web development to 50+ students.",
+          description:
+            "Conducted weekly workshops teaching modern web development to 50+ students.",
           year: "2025 – Present",
-          technologies: ["Team Management", "Event Planning", "Technical Training"],
+          technologies: [
+            "Team Management",
+            "Event Planning",
+            "Technical Training",
+          ],
           status: "🟢Currently Active",
           contributions: [
-           "Led the college Coding Club as Student Chairman",
+            "Led the college Coding Club as Student Chairman",
             "Organized coding workshops and technical sessions",
             "Mentored students in web development and programming",
             "Planned and managed club activities and events",
-          ]
+          ],
         },
         {
           id: 2,
           name: "Organizer – PieceCode 1.0 Hackathon",
-          description: "Successfully organized PieceCode 1.0, a college-level hackathon that brought together student developers to solve real-world challenges. Managed event planning, participant coordination, registrations, judging logistics, and overall execution while creating an engaging learning environment.",
+          description:
+            "Successfully organized PieceCode 1.0, a college-level hackathon that brought together student developers to solve real-world challenges. Managed event planning, participant coordination, registrations, judging logistics, and overall execution while creating an engaging learning environment.",
           year: "2025",
-          technologies: ["Hackathon", "Event Management","Leadership","Community"],
+          technologies: [
+            "Hackathon",
+            "Event Management",
+            "Leadership",
+            "Community",
+          ],
           status: "Completed",
           contributions: [
-           " Organized PieceCode 1.0 from planning to execution",
-           "Coordinated participants, mentors, and judges",
-           "Managed registrations and event operations",
-           "Promoted collaborative learning and innovation",
-          ]
+            " Organized PieceCode 1.0 from planning to execution",
+            "Coordinated participants, mentors, and judges",
+            "Managed registrations and event operations",
+            "Promoted collaborative learning and innovation",
+          ],
         },
       ],
     },
- 
   };
 
   const tabs = [
@@ -189,13 +235,18 @@ function ProfessionalJourney() {
         >
           <h2 className="journey-title">Professional Journey</h2>
           <p className="journey-subtitle">
-            My path through freelance projects, competitions, leadership, and continuous learning
+            My path through freelance projects, competitions, leadership, and
+            continuous learning
           </p>
         </motion.div>
 
         {/* Tabs */}
         <div className="journey-tabs-wrapper">
-          <div className="journey-tabs" role="tablist" aria-label="Professional Journey Categories">
+          <div
+            className="journey-tabs"
+            role="tablist"
+            aria-label="Professional Journey Categories"
+          >
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -213,10 +264,14 @@ function ProfessionalJourney() {
                     <motion.div
                       layoutId="active-tab-bg"
                       className="active-tab-bg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
-                  
+
                   <motion.span
                     className="tab-icon"
                     variants={tabIconVariants}
@@ -226,12 +281,16 @@ function ProfessionalJourney() {
                     {tab.icon}
                   </motion.span>
                   <span className="tab-label">{tab.label}</span>
-                  
+
                   {isActive && (
                     <motion.div
                       layoutId="active-tab-underline"
                       className="active-tab-underline"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </button>
@@ -255,8 +314,12 @@ function ProfessionalJourney() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <div className="content-header">
-                <h3 className="content-title">{journeyData[activeTab].title}</h3>
-                <p className="content-subtitle">{journeyData[activeTab].subtitle}</p>
+                <h3 className="content-title">
+                  {journeyData[activeTab].title}
+                </h3>
+                <p className="content-subtitle">
+                  {journeyData[activeTab].subtitle}
+                </p>
               </div>
 
               <motion.div
@@ -267,8 +330,10 @@ function ProfessionalJourney() {
                 viewport={{ once: true, margin: "-50px" }}
               >
                 {journeyData[activeTab].items.map((item) => {
-                  const isOngoing = item.status.toLowerCase().includes("active") || item.status.toLowerCase().includes("ongoing");
-                  
+                  const isOngoing =
+                    item.status.toLowerCase().includes("active") ||
+                    item.status.toLowerCase().includes("ongoing");
+
                   return (
                     <motion.div
                       key={item.id}
@@ -278,16 +343,16 @@ function ProfessionalJourney() {
                     >
                       {/* High performance hover glow background */}
                       <div className="card-glow-overlay" />
-                      
+
                       {/* Left Subtle Timeline Segment */}
                       <div className="item-timeline">
-                        <motion.div 
-                          className="timeline-dot" 
+                        <motion.div
+                          className="timeline-dot"
                           variants={dotVariants}
                           initial="initial"
                         />
-                        <motion.div 
-                          className="timeline-line" 
+                        <motion.div
+                          className="timeline-line"
                           variants={lineVariants}
                           style={{ originY: 0 }}
                         />
@@ -300,7 +365,9 @@ function ProfessionalJourney() {
                             <h4 className="item-name">{item.name}</h4>
                             <p className="item-year">{item.year}</p>
                           </div>
-                          <span className={`item-status status-${item.status.toLowerCase().replace(/\s+/g, "-")}`}>
+                          <span
+                            className={`item-status status-${item.status.toLowerCase().replace(/\s+/g, "-")}`}
+                          >
                             {isOngoing ? (
                               <>
                                 <span className="pulse-dot" />
@@ -311,36 +378,45 @@ function ProfessionalJourney() {
                             )}
                           </span>
                         </div>
-                        
+
                         <p className="item-description">{item.description}</p>
-                        
+
                         {/* Key Contributions */}
-                        {item.contributions && item.contributions.length > 0 && (
-                          <div className="item-contributions-section">
-                            <h5 className="contributions-heading">Key Contributions</h5>
-                            <motion.ul 
-                              className="contributions-list"
-                              variants={contributionsContainerVariants}
-                            >
-                              {item.contributions.map((contribution, cIdx) => (
-                                <motion.li 
-                                  key={cIdx} 
-                                  className="contribution-item"
-                                  variants={contributionItemVariants}
-                                >
-                                  <span className="contribution-icon">✓</span>
-                                  <span className="contribution-text">{contribution}</span>
-                                </motion.li>
-                              ))}
-                            </motion.ul>
-                          </div>
-                        )}
-                        
+                        {item.contributions &&
+                          item.contributions.length > 0 && (
+                            <div className="item-contributions-section">
+                              <h5 className="contributions-heading">
+                                Key Contributions
+                              </h5>
+                              <motion.ul
+                                className="contributions-list"
+                                variants={contributionsContainerVariants}
+                              >
+                                {item.contributions.map(
+                                  (contribution, cIdx) => (
+                                    <motion.li
+                                      key={cIdx}
+                                      className="contribution-item"
+                                      variants={contributionItemVariants}
+                                    >
+                                      <span className="contribution-icon">
+                                        ✓
+                                      </span>
+                                      <span className="contribution-text">
+                                        {contribution}
+                                      </span>
+                                    </motion.li>
+                                  ),
+                                )}
+                              </motion.ul>
+                            </div>
+                          )}
+
                         {/* Technologies Tags */}
                         <div className="item-tech">
                           {item.technologies.map((tech, idx) => (
-                            <motion.span 
-                              key={idx} 
+                            <motion.span
+                              key={idx}
                               className="tech-badge"
                               whileHover={{
                                 scale: 1.08,
@@ -349,7 +425,11 @@ function ProfessionalJourney() {
                                 backgroundColor: "rgba(0, 255, 204, 0.15)",
                                 borderColor: "rgba(0, 255, 204, 0.6)",
                               }}
-                              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 15,
+                              }}
                             >
                               {tech}
                             </motion.span>
